@@ -25,4 +25,8 @@ public class PostService {
         return posts;
     }
 
+    public void CreatePost(Post post){
+
+    }
+
 }

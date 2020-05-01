@@ -5,13 +5,12 @@
     <title>Login</title>
 </head>
 <body>
-<header th:replace="layout :: logged-out"></header>
 <h3>Please login: </h3>
 <form method="post" th:object="${User}">
     <label>Username : </label>
-    <input id="username" type="text"/>
+    <input id="username" name="username" type="text"/>
     <label>Password : </label>
-    <input id="password" type="text"/>
+    <input id="password" name="password" type="text"/>
     <input type="submit" value="Login"/>
 </form>
 </body>
