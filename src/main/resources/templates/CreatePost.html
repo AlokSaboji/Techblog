@@ -8,13 +8,18 @@
 <header th:replace="layout :: logged-in">
 </header>
 <form  method="post" th:action="@{/createPost}">
-
+    <div>
     <label for="title">Title :</label>
     <input type="text" id="title" name="title"/>
-
+    </div>
+    <div>
     <label for="content">content :</label>
-    <input type="text" id="content" name="content"/>
-
+        <textarea rows="7" cols="100"  id="content" name="content"></textarea>
+    </div>
+    <div>
+        <input type="checkbox" name="javaBlog" value="javaBlog"/>Java Blog
+        <input type="checkbox" name="springBlog" value="springBlog"/>Spring Blog
+    </div>
     <input type="submit" value="Create Post">
 </form>
 </body>

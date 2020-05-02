@@ -1,27 +1,36 @@
 package upgard.Model;
 
+
+import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
-public class User {
+
+@Entity
+@Table(name = "users",uniqueConstraints={@UniqueConstraint(columnNames={"username"})})
+public class User{
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="id")
+    private Integer id;
+    @Column(name="username")
     private String username;
+    @Column(name="password")
     private String password;
-    private String fullName;
-    private List<Post> postList;
+    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @JoinColumn(name ="profile")
+    private UserProfile profile;
+    @Column(name="post")
+    @OneToMany(mappedBy = "user",cascade = CascadeType.REMOVE,fetch = FetchType.LAZY)
+    private List<Post> posts = new ArrayList<>();
 
-    public List<Post> getPostList() {
-        return postList;
+    public List<Post> getPosts() {
+        return posts;
     }
 
-    public void setPostList(List<Post> postList) {
-        this.postList = postList;
-    }
-
-    public String getFullName() {
-        return fullName;
-    }
-
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
     }
 
     public String getUsername() {
@@ -38,5 +47,30 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public UserProfile getProfile() {
+        return profile;
+    }
+
+    public void setProfile(UserProfile profile) {
+        this.profile = profile;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+            "id=" + id +
+            ", username='" + username + '\'' +
+            ", password='" + password + '\'' +
+            '}';
     }
 }
